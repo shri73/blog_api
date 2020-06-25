@@ -10,14 +10,10 @@ def create_app(env_name):
     app.config.from_object(app_config[env_name])
 
     # initializing bcrypt
-    bcrypt.init_app(app)  # add this line
+    bcrypt.init_app(app)  
 
     db.init_app(app)
     app.register_blueprint(user_blueprint, url_prefix='/api/v1/users')
     app.register_blueprint(blogpost_blueprint, url_prefix='/api/v1/blogposts')
-
-    @app.route('/', methods=['GET'])
-    def index():
-        return 'Hello World!'
 
     return app
